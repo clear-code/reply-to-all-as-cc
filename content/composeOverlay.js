@@ -62,8 +62,22 @@ var ReplyToAllAsCc = {
   },
 
   handleEvent: function(aEvent) {
-    this.init();
-  }
+    switch (aEvent.type) {
+      case 'compose-window-init':
+        aEvent.currentTarget.removeEventListener(aEvent.type, this, false);
+        gMsgCompose.RegisterStateListener(this);
+        return;
+    }
+  },
+
+  // nsIMsgComposeStateListener
+  NotifyComposeFieldsReady: function() {
+    // do it after all fields are constructed completely.
+    setTimeout(this.init.bind(this), 0);
+  },
+  NotifyComposeBodyReady: function() {},
+  ComposeProcessDone: function() {},
+  SaveInFolderDone: function() {}
 };
 
 document.documentElement.addEventListener('compose-window-init', ReplyToAllAsCc, false);
