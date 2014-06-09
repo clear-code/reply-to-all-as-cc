@@ -64,14 +64,19 @@ var ReplyToAllAsCc = {
   handleEvent: function(aEvent) {
     switch (aEvent.type) {
       case 'compose-window-init':
-        aEvent.currentTarget.removeEventListener(aEvent.type, this, false);
+        document.documentElement.addEventListener('compose-window-close', this, false);
         window.addEventListener('unload', this, false);
         gMsgCompose.RegisterStateListener(this);
         return;
 
-      case 'unload':
-        aEvent.currentTarget.removeEventListener(aEvent.type, this, false);
+      case 'compose-window-close':
         gMsgCompose.UnregisterStateListener(this);
+        return;
+
+      case 'unload':
+        document.documentElement.removeEventListener('compose-window-init', this, false);
+        document.documentElement.removeEventListener('compose-window-close', this, false);
+        window.removeEventListener('unload', this, false);
         return;
     }
   },
