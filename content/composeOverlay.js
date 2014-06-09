@@ -59,8 +59,6 @@ var ReplyToAllAsCc = {
       if (chooser.value == 'addr_to' && addresses[0] != sender)
         chooser.value = 'addr_cc';
     }, this);
-
-    onRecipientsChanged(true);
   }
 };
 
