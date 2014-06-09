@@ -65,7 +65,7 @@ var ReplyToAllAsCc = {
     switch (aEvent.type) {
       case 'compose-window-init':
         aEvent.currentTarget.removeEventListener(aEvent.type, this, false);
-        widnow.addEventListener('unload', this, false);
+        window.addEventListener('unload', this, false);
         gMsgCompose.RegisterStateListener(this);
         return;
 
