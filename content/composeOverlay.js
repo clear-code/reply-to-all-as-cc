@@ -59,16 +59,11 @@ var ReplyToAllAsCc = {
       if (chooser.value == 'addr_to' && addresses[0] != sender)
         chooser.value = 'addr_cc';
     }, this);
+  },
+
+  handleEvent: function(aEvent) {
+    this.init();
   }
 };
 
-window.addEventListener('DOMContentLoaded', function ReplyToAllAsCcSetup() {
-  window.removeEventListener('DOMContentLoaded', ReplyToAllAsCcSetup, false);
-
-  let (source = window.stateListener.NotifyComposeBodyReady.toSource()) {
-    eval('window.stateListener.NotifyComposeBodyReady = '+source.replace(
-      /(\}\)?)$/,
-      'ReplyToAllAsCc.init(); $1'
-    ));
-  }
-}, false);
+document.documentElement.addEventListener('compose-window-init', ReplyToAllAsCc, false);
