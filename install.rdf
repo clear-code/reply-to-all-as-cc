@@ -6,7 +6,7 @@
                    em:id="reply-to-all-as-cc@clear-code.com"
                    em:name="Reply to All as Cc"
                    em:version="1.0"
-                   em:description="Send a reply for recipients as CC except the sender, when you do &amp;Reply to All&amp;."
+                   em:description="Send a reply for recipients as CC except the sender, when you do &quot;Reply to All&quot;."
                    em:creator="ClearCode Inc."
                    em:unpack="true"
                    em:homepageURL="http://www.clear-code.com/">
@@ -17,7 +17,7 @@
     <em:localized>
       <RDF:Description em:locale="en-US"
                        em:name="Reply to All as Cc"
-                       em:description="Send a reply for recipients as CC except the sender, when you do &amp;Reply to All&amp;."
+                       em:description="Send a reply for recipients as CC except the sender, when you do &quot;Reply to All&quot;."
                        em:homepageURL="http://www.clear-code.com/"
                        em:creator="ClearCode Inc.">
       </RDF:Description>
