@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RDF:RDF xmlns:em="http://www.mozilla.org/2004/em-rdf#"
+         xmlns:NC="http://home.netscape.com/NC-rdf#"
+         xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <RDF:Description RDF:about="urn:mozilla:install-manifest"
+                   em:id="reply-to-all-as-cc@clear-code.com"
+                   em:name="Reply to All as Cc"
+                   em:version="0.1"
+                   em:description="Send a reply for recipients as CC except the sender, when you do &amp;Reply to All&amp;."
+                   em:creator="ClearCode Inc."
+                   em:unpack="true"
+                   em:homepageURL="http://www.clear-code.com/">
+
+    <!--em:updateURL></em:updateURL-->
+    <!--em:updateKey></em:updateKey-->
+
+	<em:targetApplication>
+      <!-- Thunderbird -->
+		<Description em:id="{3550f703-e582-4d05-9a08-453d09bdfdc6}"
+			em:minVersion="17.0"
+			em:maxVersion="24.*" />
+	</em:targetApplication>
+  </RDF:Description>
+</RDF:RDF>
