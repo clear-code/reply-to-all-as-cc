@@ -5,7 +5,7 @@
   <RDF:Description RDF:about="urn:mozilla:install-manifest"
                    em:id="reply-to-all-as-cc@clear-code.com"
                    em:name="Reply to All as Cc"
-                   em:version="1.5"
+                   em:version="1.5.1"
                    em:description="Send a reply for recipients as CC except the sender, when you do &quot;Reply to All&quot;."
                    em:creator="ClearCode Inc."
                    em:unpack="true"
