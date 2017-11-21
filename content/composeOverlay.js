@@ -7,6 +7,11 @@ var ReplyToAllAsCc = {
     return gMsgCompose.type == Components.interfaces.nsIMsgCompType.ReplyAll;
   },
 
+  isSentMail: function() {
+    var originalMailFolder = gMsgCompose.originalMsgURI.split('#')[0].replace(/^(\w+)-message:/, '$1:');
+    return originalMailFolder == gMsgCompose.identity.fccFolder;
+  },
+
   getOriginalSender: function() {
     var originalHdr = this.getMsgHdrFromURI(gMsgCompose.originalMsgURI);
     var sender = this.extractAddresses(originalHdr.mime2DecodedAuthor);
@@ -47,7 +52,9 @@ var ReplyToAllAsCc = {
   },
 
   init: function() {
-    if (!this.isReplyAll())
+    if (!this.isReplyAll() ||
+        (Services.prefs.getBoolPref('extensions.reply-to-all-as-cc@clear-code.com.exceptSentFolder') &&
+         this.isSentMail()))
       return;
 
     var sender = this.getOriginalSender();
