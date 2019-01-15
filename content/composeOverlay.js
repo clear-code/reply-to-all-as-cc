@@ -40,7 +40,7 @@ var ReplyToAllAsCc = {
   },
 
   get awRecipientItems() {
-    var menulists = this.addressingWidget.querySelectorAll('listitem.addressingWidgetItem');
+    var menulists = this.addressingWidget.querySelectorAll('.addressingWidgetItem');
     return Array.slice(menulists, 0);
   },
 
