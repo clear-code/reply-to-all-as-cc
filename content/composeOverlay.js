@@ -32,7 +32,7 @@ var ReplyToAllAsCc = {
     var fullNames = {};
     var count = {};
     parser.parseHeadersWithArray(aAddressesWithComments, addresses, names, fullNames, count);
-    return addresses.value;
+    return addresses.value.filter(value => value.trim() != '');
   },
 
   get addressingWidget() {
@@ -63,7 +63,7 @@ var ReplyToAllAsCc = {
       var chooser = this.getRecipientTypeChooser(aItem);
       var recipient = this.getRecipientValue(aItem);
       var addresses = this.extractAddresses(recipient);
-      if (chooser.value == 'addr_to' && addresses[0] != sender)
+      if (chooser.value == 'addr_to' && !addresses.includes(sender))
         chooser.value = 'addr_cc';
     }, this);
   },
