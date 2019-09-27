@@ -3,6 +3,12 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 var ReplyToAllAsCc = {
+  log: function(...args) {
+    if (!Services.prefs.getBoolPref('extensions.reply-to-all-as-cc@clear-code.com.debug'))
+      return;
+    console.log(...args);
+  },
+
   isReplyAll: function() {
     return gMsgCompose.type == Components.interfaces.nsIMsgCompType.ReplyAll;
   },
@@ -13,8 +19,11 @@ var ReplyToAllAsCc = {
   },
 
   getOriginalSender: function() {
+    this.log('getOriginalSender for ', gMsgCompose.originalMsgURI);
     var originalHdr = this.getMsgHdrFromURI(gMsgCompose.originalMsgURI);
+    this.log('  originalHdr: ', originalHdr);
     var sender = this.extractAddresses(originalHdr.mime2DecodedAuthor);
+    this.log('  originalHdr.mime2DecodedAuthor: ', originalHdr.mime2DecodedAuthor);
     return sender.length > 0 ? sender[0] : null ;
   },
 
@@ -25,6 +34,7 @@ var ReplyToAllAsCc = {
   },
 
   extractAddresses: function(aAddressesWithComments) {
+    this.log('extractAddresses for ', aAddressesWithComments);
     var parser = Components.classes['@mozilla.org/messenger/headerparser;1']
                    .getService(Components.interfaces.nsIMsgHeaderParser);
     var addresses = {};
@@ -32,6 +42,7 @@ var ReplyToAllAsCc = {
     var fullNames = {};
     var count = {};
     parser.parseHeadersWithArray(aAddressesWithComments, addresses, names, fullNames, count);
+    this.log('  => ', addresses.value);
     return addresses.value.filter(value => value.trim() != '');
   },
 
