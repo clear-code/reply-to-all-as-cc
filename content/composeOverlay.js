@@ -70,13 +70,29 @@ var ReplyToAllAsCc = {
 
     var sender = this.getOriginalSender();
 
-    this.awRecipientItems.forEach(function(aItem) {
+    var allRecipients = this.awRecipientItems.map(function(aItem) {
       var chooser = this.getRecipientTypeChooser(aItem);
       var recipient = this.getRecipientValue(aItem);
       var addresses = this.extractAddresses(recipient);
-      if (chooser.value == 'addr_to' && !addresses.includes(sender))
-        chooser.value = 'addr_cc';
+      return {
+        chooser,
+        addresses,
+        isSender: addresses.includes(sender)
+      };
     }, this);
+
+    if (allRecipients.some(function(aRecipient) {
+          return aRecipient.isSender;
+        })) {
+      this.log('Sender is found in recipients: set only sender as "To" and set others as "Cc"');
+      allRecipients.forEach(function(aRecipient) {
+        if (aRecipient.chooser.value == 'addr_to' && !aRecipient.isSender)
+          aRecipient.chooser.value = 'addr_cc';
+      });
+    }
+    else {
+      this.log('Sender is not found in recipients: sent by myself, so do nothing.');
+    }
   },
 
   handleEvent: function(aEvent) {
