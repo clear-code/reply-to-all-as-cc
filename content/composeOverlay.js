@@ -3,10 +3,10 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 var ReplyToAllAsCc = {
-  log: function(...args) {
+  log: function() {
     if (!Services.prefs.getBoolPref('extensions.reply-to-all-as-cc@clear-code.com.debug'))
       return;
-    console.log(...args);
+    console.log.apply(console, arguments);
   },
 
   isReplyAll: function() {
@@ -75,9 +75,9 @@ var ReplyToAllAsCc = {
       var recipient = this.getRecipientValue(aItem);
       var addresses = this.extractAddresses(recipient);
       return {
-        chooser,
-        addresses,
-        isSender: addresses.includes(sender)
+        chooser:   chooser,
+        addresses: addresses,
+        isSender:  addresses.includes(sender)
       };
     }, this);
 
