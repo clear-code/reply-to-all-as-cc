@@ -1,0 +1,28 @@
+// Derived from https://developer.thunderbird.net/add-ons/updating/tb68/changes
+// Modified By Chandan Prakash on 25-04-2020
+// Changes done : install.rdf is converted to manifest.json
+// derived from https://developer.thunderbird.net/add-ons/updating/tb68/overlays#switch-to-json-manifest
+
+{
+  "manifest_version": 2,
+  "applications": {
+    "gecko":  {
+      "id": "reply-to-all-as-cc@clear-code.com",
+      "strict_min_version": "68.7"
+    }
+  },
+  "name": "Reply to All as Cc",
+  "version": "1.6.0",
+  "description": "Send a reply for recipients as CC except the sender, when you do &;Reply to All&quot;.",
+  "author": "clear-code.com, modified by CP ",
+  "homepage_url":  "http://www.clear-code.com/",
+  "default_locale": "en",
+  "legacy": {
+    "type": "xul",
+    "options": {
+      "page": "chrome://myextension/content/composeOverlay.xul",
+      "open_in_tab": true
+    }
+  }
+
+}
